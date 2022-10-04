@@ -54,6 +54,15 @@ contract Prk is ERC721Enumerable, Ownable {
         }
     }
 
+    // Airdrop NFTs
+    function airdropNfts(address[] calldata wAddresses) public onlyOwner {
+        uint256 totalSupply = totalSupply();
+        
+        for (uint i = 0; i < wAddresses.length; i++) {
+            _safeMint(wAddresses[i], totalSupply + i);
+        }
+    }
+
     function walletOfOwner(address _owner)
         public
         view
