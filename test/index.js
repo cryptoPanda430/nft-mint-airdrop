@@ -29,16 +29,24 @@ describe("Greeter", function () {
     //   expect(bal).to.equal(1);
     // }
 
-    await nft.mint(account1.address, 100);
+    await nft.mint(account1.address, 1);
+    await nft.mint(account2.address, 1);
+    
+    await nft.setBlacklist([account2.address]);
+
+    await nft.connect(account1).approve(account2.address, 0);
+    await nft.connect(account1).transferFrom(account1.address, account2.address, 0)
+
     let a, b, c;
     // a = await nft.walletOfOwner(account1.address);
-
-    for (i = 0; i < 100; i++) {
-      b = await nft.TokenTypes(i);
-      c = await nft.tokenURI(i);
-      console.log(b, '---');
-      console.log(c, '---');
-    }
+    a = await nft.blacklisted(account2.address);
+      console.log(a, '---');
+    // for (i = 0; i < 100; i++) {
+    //   b = await nft.TokenTypes(i);
+    //   c = await nft.tokenURI(i);
+    //   console.log(b, '---');
+    //   console.log(c, '---');
+    // }
     
   });
 });

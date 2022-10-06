@@ -27,7 +27,7 @@ contract NFT is ERC721URIStorage, Ownable {
     string baseURI;
     string baseExtension = ".json";
     bool public paused = false;
-    bool public locked = false;
+    bool public locked = true;
 
     NFTType[] public NFTTypes;
 
